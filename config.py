@@ -1,14 +1,13 @@
-# config.py
-# Здесь лежат настройки для scraper.py и bot.py
+# config.py — безопасные настройки через переменные окружения
+import os
+from zoneinfo import ZoneInfo
 
-# Токен бота из @BotFather
-TELEGRAM_TOKEN = "вставь_сюда_свой_токен"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHAT_ID        = os.getenv("CHAT_ID")          # может быть "-100..." если канал/группа
+TARGET_URL     = os.getenv("TARGET_URL", "https://example.com")
 
-# ID чата, куда бот будет присылать уведомления (можно узнать у @userinfobot)
-CHAT_ID = "вставь_сюда_ID_чата"
+# Часовой пояс Ибицы
+TZ = ZoneInfo("Europe/Madrid")
 
-# URL страницы, где искать объявления
-URL = "https://www.example.com/ads"
-
-# Как часто проверять сайт (в секундах)
-CHECK_INTERVAL = 60
+# Когда слать отчёты (локальное время TZ)
+SCHEDULE_TIMES = ["07:00", "19:00"]
